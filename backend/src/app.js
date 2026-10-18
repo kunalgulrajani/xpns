@@ -12,7 +12,7 @@ app.use(cors({ origin: corsOrigin.split(','), credentials: true }));
 app.use(express.json());
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get(['/health', '/api/health'], (req, res) => {
   res.json({ status: 'ok' });
 });
 
