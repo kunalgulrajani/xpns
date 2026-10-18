@@ -16,6 +16,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Routes mounted here
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
+
 // Centralized error handling
 app.use(errorHandler);
 
