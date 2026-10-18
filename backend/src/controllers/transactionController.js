@@ -27,7 +27,7 @@ exports.list = async (req, res, next) => {
 // POST /api/transactions
 exports.create = async (req, res, next) => {
   try {
-    const { type, amount, category, date, note } = req.body;
+    const { type, amount, category, date, note, currency } = req.body;
     const transaction = await Transaction.create({
       user: req.user._id,
       type,
@@ -35,6 +35,7 @@ exports.create = async (req, res, next) => {
       category,
       date: date || Date.now(),
       note,
+      ...(currency && { currency }),
     });
 
     res.status(201).json({ success: true, transaction });
@@ -66,7 +67,7 @@ exports.update = async (req, res, next) => {
       throw new ApiError(403, 'Not authorized');
     }
 
-    const allowed = ['type', 'amount', 'category', 'date', 'note'];
+    const allowed = ['type', 'amount', 'category', 'date', 'note', 'currency'];
     allowed.forEach((field) => {
       if (req.body[field] !== undefined) txn[field] = req.body[field];
     });

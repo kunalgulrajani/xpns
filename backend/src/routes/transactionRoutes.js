@@ -12,6 +12,7 @@ const txnRules = [
   body('category').isMongoId().withMessage('Valid category ID is required'),
   body('date').optional().isISO8601().withMessage('Date must be valid ISO 8601'),
   body('note').optional().isString().isLength({ max: 500 }),
+  body('currency').optional().isIn(['INR', 'USD', 'EUR', 'GBP']).withMessage('Currency must be INR, USD, EUR, or GBP'),
 ];
 
 router.get('/', ctrl.list);

@@ -33,6 +33,11 @@ const transactionSchema = new mongoose.Schema(
       maxlength: 500,
       default: '',
     },
+    currency: {
+      type: String,
+      enum: ['INR', 'USD', 'EUR', 'GBP'],
+      default: 'INR',
+    },
   },
   { timestamps: true }
 );

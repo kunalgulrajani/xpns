@@ -9,6 +9,8 @@ import Dashboard from './pages/Dashboard';
 import Transactions from './pages/Transactions';
 import Categories from './pages/Categories';
 
+import { CurrencyProvider } from './context/CurrencyContext';
+
 const RootRedirect = () => {
   const { isAuthenticated, loading } = useAuth();
   if (loading) {
@@ -26,11 +28,9 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<RootRedirect />} />
 
-      {}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {}
       <Route element={<ProtectedRoute />}>
         <Route
           path="/dashboard"
@@ -58,7 +58,6 @@ function AppRoutes() {
         />
       </Route>
 
-      {}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
@@ -73,7 +72,9 @@ export default function App() {
       }}
     >
       <AuthProvider>
-        <AppRoutes />
+        <CurrencyProvider>
+          <AppRoutes />
+        </CurrencyProvider>
       </AuthProvider>
     </BrowserRouter>
   );
