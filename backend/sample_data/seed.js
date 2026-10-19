@@ -8,6 +8,7 @@ require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/xpns';
 
 const { User, Category, Transaction } = require('../src/models');
+const { DEFAULT_CATEGORIES } = require('../src/utils/initDefaults');
 
 // Demo credentials
 const DEMO_USER = {
@@ -15,23 +16,6 @@ const DEMO_USER = {
   email: 'demo@xpns.test',
   password: 'DemoUser123!',
 };
-
-const DEFAULT_CATEGORIES = [
-  { name: 'Salary', type: 'income', isDefault: true },
-  { name: 'Freelance', type: 'income', isDefault: true },
-  { name: 'Investments', type: 'income', isDefault: true },
-  { name: 'Other Income', type: 'income', isDefault: true },
-
-  { name: 'Food & Dining', type: 'expense', isDefault: true },
-  { name: 'Transport', type: 'expense', isDefault: true },
-  { name: 'Housing & Rent', type: 'expense', isDefault: true },
-  { name: 'Utilities', type: 'expense', isDefault: true },
-  { name: 'Entertainment', type: 'expense', isDefault: true },
-  { name: 'Healthcare', type: 'expense', isDefault: true },
-  { name: 'Shopping', type: 'expense', isDefault: true },
-  { name: 'Personal Care', type: 'expense', isDefault: true },
-  { name: 'Education', type: 'expense', isDefault: true },
-];
 
 async function seed() {
   console.log('Connecting to database...');
